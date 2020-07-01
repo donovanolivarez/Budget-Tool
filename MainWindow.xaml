@@ -1,0 +1,44 @@
+﻿<mah:MetroWindow x:Class="Budget_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:currency="clr-namespace:CurrencyTextBoxControl;assembly=CurrencyTextbox"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Budget_Tool"
+        mc:Ignorable="d"
+        Title="Budget Tool" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel LastChildFill="False">
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock HorizontalAlignment="Center" Margin="25">
+                    This is a simple budgeting tool that helps me determine what I am able to
+                    spend, depending on the amount that I earn each month.
+                </TextBlock>
+            </StackPanel>
+            <Button Click="CalculateButton_Click" DockPanel.Dock="Bottom" Margin="50" Width="100">Calculate</Button>
+            <currency:CurrencyTextBox Number="{Binding Number}" Name="Monthly_Income" DockPanel.Dock="Bottom" Width="100"></currency:CurrencyTextBox>
+
+        </DockPanel>
+        <lvc:PieChart Name="Chart" Grid.Row="1" Series="{Binding SeriesCollection}" 
+                      LegendLocation="Right" InnerRadius="100" Margin="0 75 150 20">
+            <lvc:PieChart.ChartLegend>
+                <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
+            </lvc:PieChart.ChartLegend>
+            <lvc:PieChart.DataTooltip>
+                <lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
+            </lvc:PieChart.DataTooltip>
+        </lvc:PieChart>
+    </Grid>
+</mah:MetroWindow>
